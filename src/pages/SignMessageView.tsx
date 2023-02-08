@@ -21,6 +21,7 @@ import {
 import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
 import { ViewData } from "../client/ViewData"
+import { ProviderKeys } from "../chains/ProviderKeys"
 
 export const SignMessageView = () => {
   const [msg, setMsg] = React.useState("");
@@ -52,7 +53,12 @@ export const SignMessageView = () => {
     }
     const s = await w.signMessage(msg);
     setOriginalSig(s);
-    setSig(w.buildSignature(msg, s));
+    if(ViewData.wallet.token === ProviderKeys.Solana){
+      const sigObj = JSON.parse(s);
+      setSig(w.buildSignature2(msg, sigObj.signature));
+    }
+    else
+        setSig(w.buildSignature(msg, s));
   }
     return (
         <VStack spacing={4}>

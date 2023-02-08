@@ -5,6 +5,7 @@ export interface IWallet {
 }
 
 export class Wallet implements IWallet {
+    token: string = "";
     account: string = "";
     publicKey: string = "";
 
@@ -46,6 +47,16 @@ export class Wallet implements IWallet {
     }
 
     buildSignature(msg: string, sig: string): string {
+        const data = {
+            account: this.account,
+            publicKey: this.publicKey,
+            message: msg,
+            signature: sig,
+            timestamp: Date.now()
+        };
+        return JSON.stringify(data, null, 2);
+    }
+    buildSignature2(msg: string, sig: any): string {
         const data = {
             account: this.account,
             publicKey: this.publicKey,

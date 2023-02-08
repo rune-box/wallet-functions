@@ -1,7 +1,13 @@
 import { ethers } from "ethers";
+import { ProviderKeys } from "./ProviderKeys"
 import { Wallet } from "./Wallet";
 
 export class EthWallet extends Wallet {
+    constructor(){
+        super();
+        this.token = ProviderKeys.ETH;
+    }
+
     async connect(): Promise<string>{
         this.account = "";
         

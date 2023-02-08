@@ -15,7 +15,7 @@ import PWCore, {
     Message
 } from '@lay2/pw-core';
 import { PWCoreUtility } from '../pw/PWCoreUtility';
-
+import { ProviderKeys } from "./ProviderKeys"
 import { Wallet } from "./Wallet";
 
 const Web3 = (window as any).Web3;
@@ -89,14 +89,8 @@ export class PortalWallet extends Wallet {
 
     constructor(){
         super();
+        this.token = ProviderKeys.NervosCKB;
         PWCore.setChainId(0);
-        // functions.config({
-        //     upSnapshotUrl: NervosConfig.Unipass_SnapshotUrl,
-        //     chainID: NervosConfig.PWCore_ChainId,
-        //     ckbNodeUrl: NervosConfig.CKB_NodeUrl,
-        //     ckbIndexerUrl: NervosConfig.CKB_IndexerUrl,
-        //     upLockCodeHash: NervosConfig.Unipass_LockCodeHash
-        // });
     }
 
     async init(): Promise<boolean> {

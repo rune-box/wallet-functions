@@ -21,6 +21,7 @@ import { Footer } from "../components/Footer"
 import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon } from '../icons/Icons';
 import { Wallet } from "../chains/Wallet"
 import { EthWallet } from "../chains/EthWallet"
+import { SolWallet } from "../chains/SolWallet"
 import { PortalWallet } from "../chains/PortalWallet"
 import { ViewData } from "../client/ViewData";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +54,10 @@ export const HomeView = () => {
         await doConnect(w);
     }
 
-    const connectSolana = async () => {}
+    const connectSolana = async () => {
+        const w = new SolWallet();
+        await doConnect(w);
+    }
 
     return (
         <VStack spacing={4}>
@@ -147,7 +151,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true} onClick={connectSolana}>Injected</Button>
+                                        <Button isDisabled={Wallet.detectSolana() === false} onClick={connectSolana}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

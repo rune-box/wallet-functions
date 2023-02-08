@@ -23,6 +23,7 @@ import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon
 import { Wallet } from "../chains/Wallet"
 import { MyAlgoWallet } from "../chains/MyAlgoWallet"
 import { ArWallet } from "../chains/ArWallet"
+import { KeplrWallet } from "../chains/KeplrWallet"
 import { EthWallet } from "../chains/EthWallet"
 import { SolWallet } from "../chains/SolWallet"
 import { PortalWallet } from "../chains/PortalWallet"
@@ -52,18 +53,19 @@ export const HomeView = () => {
         const w = new ArWallet();
         await doConnect(w);
     }
-
+    const connectKeplr = async () => {
+        const w = new KeplrWallet();
+        await doConnect(w);
+    }
     const connectEth = async () => {
         const w = new EthWallet();
         await doConnect(w);
     }
-
     const connectPW = async () => {
         const w = new PortalWallet();
         await w.init();
         await doConnect(w);
     }
-
     const connectSolana = async () => {
         const w = new SolWallet();
         await doConnect(w);
@@ -105,6 +107,25 @@ export const HomeView = () => {
                                 <Box>
                                     <HStack>
                                         <Button onClick={connectAr}>Injected</Button>
+                                    </HStack>
+                                </Box>
+                            </Stack>
+                        </CardBody>
+                    </Card>
+                </WrapItem>
+                <WrapItem>
+                    <Card width="260px" height="310px">
+                        <CardHeader>
+                            <Heading size='md'>Cosmos</Heading>
+                        </CardHeader>
+                        <CardBody>
+                            <Stack divider={<StackDivider />} spacing="4">
+                                <Center>
+                                    <Heading size="3xl"><AtomIcon /></Heading>
+                                </Center>
+                                <Box>
+                                    <HStack>
+                                        <Button onClick={connectKeplr}>Keplr</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

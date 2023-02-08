@@ -40,14 +40,4 @@ export class MyAlgoWallet extends Wallet {
     async verifyMessage(): Promise<boolean> {
         return false;
     }
-
-    static async requestETHNetwork(ethereum: any): Promise<any> {
-        const result = await ethereum.request({
-            method: "wallet_switchEthereumChain",
-            params: [{
-                chainId: "0x1"
-            }]
-        });
-        return result;
-    }
 }

@@ -25,6 +25,7 @@ import { MyAlgoWallet } from "../chains/MyAlgoWallet"
 import { ArWallet } from "../chains/ArWallet"
 import { KeplrWallet } from "../chains/KeplrWallet"
 import { EthWallet } from "../chains/EthWallet"
+import { DotWallet } from "../chains/DotWallet"
 import { SolWallet } from "../chains/SolWallet"
 import { PortalWallet } from "../chains/PortalWallet"
 import { ViewData } from "../client/ViewData";
@@ -59,6 +60,10 @@ export const HomeView = () => {
     }
     const connectEth = async () => {
         const w = new EthWallet();
+        await doConnect(w);
+    }
+    const connectDot = async () => {
+        const w = new DotWallet();
         await doConnect(w);
     }
     const connectPW = async () => {
@@ -163,7 +168,26 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true} onClick={connectPW}>Portal (PW)</Button>
+                                        <Button isDisabled={true} onClick={connectPW}>???</Button>
+                                    </HStack>
+                                </Box>
+                            </Stack>
+                        </CardBody>
+                    </Card>
+                </WrapItem>
+                <WrapItem>
+                    <Card width="260px" height="310px">
+                        <CardHeader>
+                            <Heading size='md'>Polkadot</Heading>
+                        </CardHeader>
+                        <CardBody>
+                            <Stack divider={<StackDivider />} spacing="4">
+                                <Center>
+                                    <Heading size="3xl"><DotIcon /></Heading>
+                                </Center>
+                                <Box>
+                                    <HStack>
+                                        <Button onClick={connectDot}>Web3</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

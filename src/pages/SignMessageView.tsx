@@ -53,6 +53,7 @@ export const SignMessageView = () => {
     }
     const s = await w.signMessage(msg);
     setOriginalSig(s);
+    
     if(ViewData.wallet.token === ProviderKeys.Solana){
       const sigObj = JSON.parse(s);
       setSig(w.buildSignature2(msg, sigObj.signature));

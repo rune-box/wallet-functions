@@ -21,6 +21,7 @@ import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
 import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon } from '../icons/Icons';
 import { Wallet } from "../chains/Wallet"
+import { MyAlgoWallet } from "../chains/MyAlgoWallet"
 import { ArWallet } from "../chains/ArWallet"
 import { EthWallet } from "../chains/EthWallet"
 import { SolWallet } from "../chains/SolWallet"
@@ -42,7 +43,10 @@ export const HomeView = () => {
         }
     }
 
-    const connectAlgo = async () => {}
+    const connectMyAlgo = async () => {
+        const w = new MyAlgoWallet();
+        await doConnect(w);
+    }
 
     const connectAr = async () => {
         const w = new ArWallet();
@@ -81,7 +85,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button onClick={connectAlgo}>MyAlgo</Button>
+                                        <Button onClick={connectMyAlgo}>MyAlgo</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

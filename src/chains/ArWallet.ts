@@ -7,7 +7,7 @@ import { Wallet } from "./Wallet";
 export class ArWallet extends Wallet {
     constructor(){
         super();
-        this.token = ProviderKeys.ETH;
+        this.token = ProviderKeys.Arweave;
     }
 
     async connect(): Promise<string>{

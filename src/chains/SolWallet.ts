@@ -1,3 +1,4 @@
+import { ViewData } from "../client/ViewData";
 import { ProviderKeys } from "./ProviderKeys"
 import { Wallet } from "./Wallet";
 
@@ -11,6 +12,17 @@ export class SolWallet extends Wallet {
         this.account = "";
         
         const solana = (window as any).solana;
+        if(!solana){
+            ViewData.toast({
+                title: 'No Solana wallet detected!',
+                description: "Your should install a Solana wallet first.",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+            return "";
+        }
+
         const resp = await solana.connect();
         this.publicKey = resp.publicKey.toString();
         this.account = this.publicKey;

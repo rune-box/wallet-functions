@@ -22,28 +22,28 @@ export class Wallet implements IWallet {
     }
 
     static detectArweave(): boolean{
-        return (window as any).arweaveWallet;
+        return (window as any).arweaveWallet !== undefined;
     }
     static detectCosmos(): boolean{
-        return false;// (window as any).keplr;
+        return false;// (window as any).keplr !== undefined;
     }
     static detectEthereum(): boolean{
-        return (window as any).ethereum;
+        return (window as any).ethereum !== undefined;
     }
     static detectNervosPW(): boolean{
-        return (window as any).ethereum &&
-            (window as any).web3 &&
-            (window as any).Web3Modal &&
-            (window as any).WalletConnectProvider;
+        return (window as any).ethereum !== undefined &&
+            (window as any).web3 !== undefined &&
+            (window as any).Web3Modal !== undefined &&
+            (window as any).WalletConnectProvider !== undefined;
     }
     static detectPolkadot(): boolean{
-        return false;// (window as any).injectedWeb3;
+        return false;// (window as any).injectedWeb3 !== undefined;
     }
     static detectNostr(): boolean{
-        return (window as any).nostr;
+        return (window as any).nostr !== undefined;
     }
     static detectSolana(): boolean{
-        return (window as any).solana;
+        return (window as any).solana !== undefined;
     }
 
     buildSignature(msg: string, sig: string): string {

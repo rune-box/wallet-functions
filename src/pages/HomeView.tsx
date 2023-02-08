@@ -14,12 +14,14 @@ import {
     Box,
     HStack,
     Button,
-    Center
+    Center,
+    useToast
 } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
 import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon } from '../icons/Icons';
 import { Wallet } from "../chains/Wallet"
+import { ArWallet } from "../chains/ArWallet"
 import { EthWallet } from "../chains/EthWallet"
 import { SolWallet } from "../chains/SolWallet"
 import { PortalWallet } from "../chains/PortalWallet"
@@ -29,6 +31,7 @@ import { RoutesData } from "../client/RoutesData";
 
 export const HomeView = () => {
     const navigate = useNavigate();
+    const toast = ViewData.toast = useToast();
 
     const doConnect = async (wallet: Wallet) => {
         ViewData.account = await wallet.connect();
@@ -41,7 +44,10 @@ export const HomeView = () => {
 
     const connectAlgo = async () => {}
 
-    const connectAr = async () => {}
+    const connectAr = async () => {
+        const w = new ArWallet();
+        await doConnect(w);
+    }
 
     const connectEth = async () => {
         const w = new EthWallet();
@@ -75,7 +81,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true} onClick={connectAlgo}>MyAlgo</Button>
+                                        <Button onClick={connectAlgo}>MyAlgo</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -94,7 +100,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true} onClick={connectAr}>Injected</Button>
+                                        <Button onClick={connectAr}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -113,7 +119,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={Wallet.detectEthereum() === false}  onClick={connectEth}>Injected</Button>
+                                        <Button onClick={connectEth}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -132,7 +138,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true || Wallet.detectNervosPW() === false} onClick={connectPW}>Portal (PW)</Button>
+                                        <Button isDisabled={true} onClick={connectPW}>Portal (PW)</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -151,7 +157,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={Wallet.detectSolana() === false} onClick={connectSolana}>Injected</Button>
+                                        <Button onClick={connectSolana}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

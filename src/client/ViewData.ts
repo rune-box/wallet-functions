@@ -4,4 +4,6 @@ export class ViewData {
     static account: string = "";
     static wallet: Wallet;
     static connected: boolean = false;
+
+    static toast: any;
 }

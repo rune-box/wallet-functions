@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { ViewData } from "../client/ViewData";
 import { ProviderKeys } from "./ProviderKeys"
 import { Wallet } from "./Wallet";
 
@@ -10,8 +11,18 @@ export class EthWallet extends Wallet {
 
     async connect(): Promise<string>{
         this.account = "";
-        
         const ethereum = (window as any).ethereum;
+        if(!ethereum){
+            ViewData.toast({
+                title: 'No Ethereum wallet detected!',
+                description: "Your should install a Ethereum wallet first.",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+            return "";
+        }
+
         const ethNetwork = await EthWallet.requestETHNetwork(ethereum);
         const accounts = await ethereum.request({ method: "eth_requestAccounts" });
         this.account = accounts[0];

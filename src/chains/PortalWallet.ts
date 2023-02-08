@@ -14,6 +14,7 @@ import PWCore, {
     IndexerCollector,
     Message
 } from '@lay2/pw-core';
+import { ViewData } from '../client/ViewData';
 import { PWCoreUtility } from '../pw/PWCoreUtility';
 import { ProviderKeys } from "./ProviderKeys"
 import { Wallet } from "./Wallet";
@@ -108,6 +109,16 @@ export class PortalWallet extends Wallet {
 
     async connect(): Promise<string> {
         this.account = "";
+        if(!Wallet.detectNervosPW()){
+            ViewData.toast({
+                title: 'No Ethereum wallet detected!',
+                description: "Your should install a Ethereum wallet first.",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+            return "";
+        }
         await this.doConnect();
         return this.account;
     }

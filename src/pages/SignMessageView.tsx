@@ -4,37 +4,96 @@ import {
   InputGroup,
   InputLeftAddon,
   Input,
-  Text
+  Text,
+  Grid,
+  GridItem,
+  Button,
+  useToast,
+  Card,
+  CardHeader,
+  Heading,
+  CardBody,
+  Textarea,
+  Center
 } from "@chakra-ui/react"
 // import { ENSContext } from "../client/ENSContext"
 // import { DotbitContext } from "../client/DotbitContext"
 import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
+import { ViewData } from "../client/ViewData"
 
 export const SignMessageView = () => {
+  const [msg, setMsg] = React.useState("");
+  const [originalSig, setOriginalSig] = React.useState("");
+  const [sig, setSig] = React.useState("");
+  const toast = useToast();
+
+  const signMessage = async () => {
+    if(!msg){
+      toast({
+        title: 'No data',
+        description: "Please input something in Message area.",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    let w = ViewData.wallet;
+    if(!w || !ViewData.account){
+      toast({
+        title: 'Not connected',
+        description: "Please connect your wallet in Home page.",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    const s = await w.signMessage(msg);
+    setOriginalSig(s);
+    setSig(w.buildSignature(msg, s));
+  }
     return (
         <VStack spacing={4}>
           <NavBar />
-          {/* <InputGroup>
-            <InputLeftAddon children="DID" />
-            <Input type="text" placeholder="try abc.eth or abc.bit"
-              value={did} onChange={(e) => {
-                setDID(e.target.value);
-                processDid(e.target.value);
-              }
-              } />
-          </InputGroup>
-          <InputGroup>
-            <InputLeftAddon children="ETH" />
-            <Input type="text" placeholder="Address: 0x..."
-              value={evmAddress} onChange={(e) => { setEvmAddress(e.target.value); }} />
-          </InputGroup>
-          <InputGroup>
-            <InputLeftAddon children="Idena" />
-            <Input type="text" placeholder="Address: 0x..."
-              value={idenaAddress} onChange={(e) => { setIdenaAddress(e.target.value); }} />
-          </InputGroup> */}
-          <Text>Home</Text>
+          <Center w="100%">
+            <VStack spacing={5} m={5} w="100%">
+              <Card w="100%" height="300px">
+                <CardHeader>
+                  <Heading size='md'>Message</Heading>
+                </CardHeader>
+                <CardBody>
+                  <Textarea height="200px"
+                    value={msg}
+                    onChange={(e) => setMsg(e.target.value) } />
+                </CardBody>
+              </Card>
+              <Button onClick={signMessage}>Sign Message</Button>
+              <Grid templateColumns='repeat(2, 1fr)' gap={6} w="100%">
+                <GridItem w="100%">
+                  <Card w="100%" height="400px">
+                    <CardHeader>
+                      <Heading size='md'>Original Signature</Heading>
+                    </CardHeader>
+                    <CardBody>
+                      <Textarea height="300px" value={originalSig} isReadOnly={true} />
+                    </CardBody>
+                  </Card>
+                </GridItem>
+                <GridItem w="100%">
+                  <Card w="100%" height="400px">
+                    <CardHeader>
+                      <Heading size='md'>Formatted Signature</Heading>
+                    </CardHeader>
+                    <CardBody>
+                      <Textarea height="300px" value={sig} isReadOnly={true} />
+                    </CardBody>
+                  </Card>
+                </GridItem>
+              </Grid>
+            </VStack>
+          </Center>
           <Footer />
         </VStack>
       );

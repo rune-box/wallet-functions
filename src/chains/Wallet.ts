@@ -1,10 +1,18 @@
 export interface IWallet {
-    signMessage(): Promise<string>;
+    connect(): Promise<string>;
+    signMessage(message: string): Promise<string>;
     verifyMessage(): Promise<boolean>;
 }
 
 export class Wallet implements IWallet {
-    async signMessage(): Promise<string>{
+    account: string = "";
+    publicKey: string = "";
+
+    async connect(): Promise<string>{
+        return "";
+    }
+
+    async signMessage(message: string): Promise<string>{
         return "";
     }
     
@@ -29,5 +37,16 @@ export class Wallet implements IWallet {
     }
     static detectSolana(): boolean{
         return (window as any).solana;
+    }
+
+    buildSignature(msg: string, sig: string): string {
+        const data = {
+            account: this.account,
+            publicKey: this.publicKey,
+            message: msg,
+            signature: sig,
+            timestamp: Date.now()
+        };
+        return JSON.stringify(data, null, 2);
     }
 }

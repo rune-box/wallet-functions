@@ -1,5 +1,7 @@
+import { Wallet } from "../chains/Wallet";
 
-export const ViewData = {
-    account:  "",
-    connected: false
+export class ViewData {
+    static account: string = "";
+    static wallet: Wallet;
+    static connected: boolean = false;
 }

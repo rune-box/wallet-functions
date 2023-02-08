@@ -20,9 +20,31 @@ import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
 import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon } from '../icons/Icons';
 import { Wallet } from "../chains/Wallet"
+import { EthWallet } from "../chains/EthWallet"
+import { ViewData } from "../client/ViewData";
+import { useNavigate } from "react-router-dom";
+import { RoutesData } from "../client/RoutesData";
 
 export const HomeView = () => {
-    //
+    const navigate = useNavigate();
+
+    const connectAlgo = async () => {}
+
+    const connectAr = async () => {}
+
+    const connectEth = async () => {
+        const w = new EthWallet();
+        ViewData.account = await w.connect();
+        if(ViewData.account){
+            ViewData.connected = true;
+            ViewData.wallet = w;
+            navigate(RoutesData.SignMessage);
+        }
+    }
+
+    const connectNervos = async () => {}
+
+    const connectSolana = async () => {}
 
     return (
         <VStack spacing={4}>
@@ -40,7 +62,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true}>MyAlgo</Button>
+                                        <Button isDisabled={true} onClick={connectAlgo}>MyAlgo</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -59,7 +81,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true}>Injected</Button>
+                                        <Button isDisabled={true} onClick={connectAr}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -78,7 +100,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={Wallet.detectEthereum() === false}>Injected</Button>
+                                        <Button isDisabled={Wallet.detectEthereum() === false}  onClick={connectEth}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -97,7 +119,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={Wallet.detectEthereum() === false}>Portal (PW)</Button>
+                                        <Button isDisabled={Wallet.detectEthereum() === false} onClick={connectNervos}>Portal (PW)</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -116,7 +138,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true}>Injected</Button>
+                                        <Button isDisabled={true} onClick={connectSolana}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

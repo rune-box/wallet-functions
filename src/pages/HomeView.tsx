@@ -21,6 +21,7 @@ import { Footer } from "../components/Footer"
 import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon } from '../icons/Icons';
 import { Wallet } from "../chains/Wallet"
 import { EthWallet } from "../chains/EthWallet"
+import { PortalWallet } from "../chains/PortalWallet"
 import { ViewData } from "../client/ViewData";
 import { useNavigate } from "react-router-dom";
 import { RoutesData } from "../client/RoutesData";
@@ -28,21 +29,29 @@ import { RoutesData } from "../client/RoutesData";
 export const HomeView = () => {
     const navigate = useNavigate();
 
+    const doConnect = async (wallet: Wallet) => {
+        ViewData.account = await wallet.connect();
+        if(ViewData.account){
+            ViewData.connected = true;
+            ViewData.wallet = wallet;
+            navigate(RoutesData.SignMessage);
+        }
+    }
+
     const connectAlgo = async () => {}
 
     const connectAr = async () => {}
 
     const connectEth = async () => {
         const w = new EthWallet();
-        ViewData.account = await w.connect();
-        if(ViewData.account){
-            ViewData.connected = true;
-            ViewData.wallet = w;
-            navigate(RoutesData.SignMessage);
-        }
+        await doConnect(w);
     }
 
-    const connectNervos = async () => {}
+    const connectPW = async () => {
+        const w = new PortalWallet();
+        await w.init();
+        await doConnect(w);
+    }
 
     const connectSolana = async () => {}
 
@@ -119,7 +128,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={Wallet.detectEthereum() === false} onClick={connectNervos}>Portal (PW)</Button>
+                                        <Button isDisabled={true || Wallet.detectNervosPW() === false} onClick={connectPW}>Portal (PW)</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

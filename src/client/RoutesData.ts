@@ -1,6 +1,6 @@
 
 export const RoutesData = {
-    Home: "/tools/wallet-functions",
-    SignMessage: "/tools/wallet-functions/sign-message",
-    VerifyMessage: "/tools/wallet-functions/verify-message"
+    Home: "/tool/wallet-functions",
+    SignMessage: "/tool/wallet-functions/sign-message",
+    VerifyMessage: "/tool/wallet-functions/verify-message"
 }

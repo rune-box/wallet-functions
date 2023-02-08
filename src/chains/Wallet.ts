@@ -29,6 +29,12 @@ export class Wallet implements IWallet {
     static detectEthereum(): boolean{
         return (window as any).ethereum;
     }
+    static detectNervosPW(): boolean{
+        return (window as any).ethereum &&
+            (window as any).web3 &&
+            (window as any).Web3Modal &&
+            (window as any).WalletConnectProvider;
+    }
     static detectPolkadot(): boolean{
         return false;// (window as any).injectedWeb3;
     }

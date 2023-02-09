@@ -10,5 +10,6 @@ export class ProviderKeys{
     static readonly Algorand: string = "algo";
 
     static readonly Nostr: string = "nostr";
-    static readonly UniPassID: string = "unipassid";
+    static readonly UniPassID: string = "unipass-id";
+    static readonly UniPassWallet: string = "unipass-wallet";
 }

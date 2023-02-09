@@ -6,6 +6,8 @@ export interface IWallet {
 
 export class Wallet implements IWallet {
     token: string = "";
+    product: string = "";
+
     account: string = "";
     publicKey: string = "";
 

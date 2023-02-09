@@ -15,7 +15,9 @@ import {
     HStack,
     Button,
     Center,
-    useToast
+    useToast,
+    LinkBox,
+    LinkOverlay
 } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
@@ -28,6 +30,8 @@ import { EthWallet } from "../chains/EthWallet"
 import { DotWallet } from "../chains/DotWallet"
 import { SolWallet } from "../chains/SolWallet"
 import { PortalWallet } from "../chains/PortalWallet"
+//
+import { UniPassWallet } from "../chains/UniPassWallet"
 import { ViewData } from "../client/ViewData";
 import { useNavigate } from "react-router-dom";
 import { RoutesData } from "../client/RoutesData";
@@ -73,6 +77,11 @@ export const HomeView = () => {
     }
     const connectSolana = async () => {
         const w = new SolWallet();
+        await doConnect(w);
+    }
+    // =========== Smart Contract Wallet ===========
+    const connectUniPassWallet = async () => {
+        const w = new UniPassWallet();
         await doConnect(w);
     }
 
@@ -168,7 +177,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
-                                        <Button isDisabled={true} onClick={connectPW}>???</Button>
+                                        <Button onClick={connectPW}>PW (Incompatible with CKB)</Button>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -212,6 +221,22 @@ export const HomeView = () => {
                             </Stack>
                         </CardBody>
                     </Card>
+                </WrapItem>
+            </Wrap>
+            <Center margin="50px;">
+                <Heading size="xl">Smart Contract Wallets</Heading>
+            </Center>
+            <Wrap spacing='30px' justify='center'>
+                <WrapItem>
+                    <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'
+                        width="200px" height="200px" cursor="pointer">
+                        <Heading size="md" my="2">
+                            <LinkOverlay onClick={connectUniPassWallet}>UniPass Wallet</LinkOverlay>
+                        </Heading>
+                        <Center marginTop="40px">
+                            <Heading size="3xl"><UnipassIcon /></Heading>
+                        </Center>
+                    </LinkBox>
                 </WrapItem>
             </Wrap>
             <Footer />

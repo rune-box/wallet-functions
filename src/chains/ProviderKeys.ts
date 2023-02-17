@@ -8,6 +8,7 @@ export class ProviderKeys{
     static readonly NervosCKB: string = "ckb";
     static readonly Idena: string = "idena";
     static readonly Algorand: string = "algo";
+    static readonly Stacks: string = "stx";
 
     static readonly Nostr: string = "nostr";
     static readonly UniPassID: string = "unipass-id";

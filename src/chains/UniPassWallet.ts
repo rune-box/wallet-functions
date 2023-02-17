@@ -11,6 +11,7 @@ import {
 import { ViewData } from "../client/ViewData";
 import { ProviderKeys } from "./ProviderKeys"
 import { Wallet } from "./Wallet";
+import { AppSettings } from "../client/AppSettings";
 
 export class UniPassWallet extends Wallet {
     upWallet: UniPassPopupSDK;
@@ -24,8 +25,8 @@ export class UniPassWallet extends Wallet {
             chainType: "eth",
             appSettings: {
                 //theme: UniPassTheme.LIGHT,
-                appName: "Runebox",
-                appIcon: "https://www.runebox.xyz/images/logo.png",
+                appName: AppSettings.appName,
+                appIcon: AppSettings.appIcon,
             },
         });
     }

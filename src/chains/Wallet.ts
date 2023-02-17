@@ -15,8 +15,14 @@ export class Wallet implements IWallet {
         return "";
     }
 
+    connect2(onFinish: (payload: any) => void, onCancel: () => void ){
+    }
+
     async signMessage(message: string): Promise<string>{
         return "";
+    }
+
+    async signMessage2(message: string, onFinish: (data: any) => void, onCancel: () => void ): Promise<void>{
     }
     
     async verifyMessage(): Promise<boolean> {

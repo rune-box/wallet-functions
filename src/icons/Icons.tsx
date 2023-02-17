@@ -91,6 +91,10 @@ export const UnipassIcon = forwardRef<ImageProps, "img">((props: any, ref: any) 
     return <chakra.img src={unipass} ref={ref} width="1em" height="1em" {...props} />
 });
 
+export const StacksIcon = forwardRef<ImageProps, "img">((props: any, ref: any) => {
+    return <chakra.img src="https://docs.stacks.co/img/stacks_with_interior_white_exterior_transparent.png" ref={ref} width="1em" height="1em" {...props} />
+});
+
 export const FingerprintIcon = forwardRef<ImageProps, "img">((props: any, ref: any) => {
     return <chakra.img src={fingerprint} ref={ref} width="1em" height="1em" {...props} />
 });

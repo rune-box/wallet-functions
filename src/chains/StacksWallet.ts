@@ -11,7 +11,7 @@ export class StacksWallet extends Wallet {
 
     constructor(){
         super();
-        this.token = ProviderKeys.ETH;
+        this.token = ProviderKeys.Stacks;
     }
 
     connect2(onFinish: (payload: FinishedAuthData) => void, onCancel: () => void ){
@@ -48,7 +48,7 @@ export class StacksWallet extends Wallet {
         await openSignatureRequestPopup({
             message,
             network: StacksNetwork.fromName("mainnet"),
-            stxAddress: this.account,
+            // stxAddress: this.account,
             userSession: this.userSession,
             onFinish: (data: SignatureData) => {
                 this.publicKey = data.publicKey;

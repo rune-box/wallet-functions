@@ -9,6 +9,7 @@ export class ProviderKeys{
     static readonly Idena: string = "idena";
     static readonly Algorand: string = "algo";
     static readonly Stacks: string = "stx";
+    static readonly Tron: string = "trx";
 
     static readonly Nostr: string = "nostr";
     static readonly UniPassID: string = "unipass-id";

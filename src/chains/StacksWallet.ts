@@ -26,13 +26,12 @@ export class StacksWallet extends Wallet {
                 this.userSession = payload.userSession;
                 const userData = this.userSession.loadUserData();
                 //authResponsePayload
-                console.log("userData");
-                console.log(userData);
-                console.log("authResponse");
-                console.log(payload.authResponse);
+                // console.log("userData");
+                // console.log(userData);
+                // console.log("authResponse");
+                // console.log(payload.authResponse);
                 console.log("authResponsePayload");
                 console.log(payload.authResponsePayload);
-                //this.account = userData.identityAddress || "";
                 this.account = payload.authResponsePayload.profile.stxAddress.mainnet;
                 const pks = payload.authResponsePayload.public_keys;
                 if(pks && pks.length > 0){
@@ -51,6 +50,8 @@ export class StacksWallet extends Wallet {
             // stxAddress: this.account,
             userSession: this.userSession,
             onFinish: (data: SignatureData) => {
+                // console.log("sig data:");
+                // console.log(data);
                 this.publicKey = data.publicKey;
                 if(onFinish){ onFinish(data); }
             },

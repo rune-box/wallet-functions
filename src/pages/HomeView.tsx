@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
-import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon, StacksIcon } from '../icons/Icons';
+import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon, StacksIcon, TrxIcon } from '../icons/Icons';
 import { Wallet } from "../chains/Wallet"
 import { MyAlgoWallet } from "../chains/MyAlgoWallet"
 import { ArWallet } from "../chains/ArWallet"
@@ -31,6 +31,7 @@ import { DotWallet } from "../chains/DotWallet"
 import { PortalWallet } from "../chains/PortalWallet"
 import { SolWallet } from "../chains/SolWallet"
 import { StacksWallet } from "../chains/StacksWallet"
+import { TrxWallet } from "../chains/TrxWallet"
 //
 import { UniPassWallet } from "../chains/UniPassWallet"
 import { ViewData } from "../client/ViewData";
@@ -93,6 +94,10 @@ export const HomeView = () => {
                 }
             },
             () => { });
+    }
+    const connectTron = async () => {
+        const w = new TrxWallet();
+        await doConnect(w);
     }
     // =========== Smart Contract Wallet ===========
     const connectUniPassWallet = async () => {
@@ -250,6 +255,25 @@ export const HomeView = () => {
                                 <Box>
                                     <HStack>
                                         <Button onClick={connectStacks}>Injected</Button>
+                                    </HStack>
+                                </Box>
+                            </Stack>
+                        </CardBody>
+                    </Card>
+                </WrapItem>
+                <WrapItem>
+                    <Card width="260px" height="310px">
+                        <CardHeader>
+                            <Heading size='md'>Tron</Heading>
+                        </CardHeader>
+                        <CardBody>
+                            <Stack divider={<StackDivider />} spacing="4">
+                                <Center>
+                                    <Heading size="3xl"><TrxIcon /></Heading>
+                                </Center>
+                                <Box>
+                                    <HStack>
+                                        <Button onClick={connectTron}>Injected</Button>
                                     </HStack>
                                 </Box>
                             </Stack>

@@ -11,7 +11,8 @@ export class ProviderKeys{
     static readonly Stacks: string = "stx";
     static readonly Tron: string = "trx";
 
-    static readonly Nostr: string = "nostr";
+    static readonly JoyID: string = "joy-id";
     static readonly UniPassID: string = "unipass-id";
     static readonly UniPassWallet: string = "unipass-wallet";
+    static readonly Nostr: string = "nostr";
 }

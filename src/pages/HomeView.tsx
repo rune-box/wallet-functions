@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
-import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, SolIcon, MasksIcon, UnipassIcon, StacksIcon, TrxIcon } from '../icons/Icons';
+import { AlgoIcon, ArIcon, AtomIcon, BtcIcon, CkbIcon, DotIcon, EthIcon, JoyIDIcon, SolIcon, MasksIcon, UnipassIcon, StacksIcon, TrxIcon } from '../icons/Icons';
 import { Wallet } from "../chains/Wallet"
 import { MyAlgoWallet } from "../chains/MyAlgoWallet"
 import { ArWallet } from "../chains/ArWallet"
@@ -33,6 +33,7 @@ import { SolWallet } from "../chains/SolWallet"
 import { StacksWallet } from "../chains/StacksWallet"
 import { TrxWallet } from "../chains/TrxWallet"
 //
+import { JoyIDWallet } from "../chains/JoyIDWallet"
 import { UniPassWallet } from "../chains/UniPassWallet"
 import { ViewData } from "../client/ViewData";
 import { useNavigate } from "react-router-dom";
@@ -97,6 +98,10 @@ export const HomeView = () => {
     }
     const connectTron = async () => {
         const w = new TrxWallet();
+        await doConnect(w);
+    }
+    const connectJoyID = async () => {
+        const w = new JoyIDWallet();
         await doConnect(w);
     }
     // =========== Smart Contract Wallet ===========
@@ -185,6 +190,25 @@ export const HomeView = () => {
                         </CardBody>
                     </Card>
                 </WrapItem>
+                {/* <WrapItem>
+                    <Card width="260px" height="310px">
+                        <CardHeader>
+                            <Heading size='md'>JoyID</Heading>
+                        </CardHeader>
+                        <CardBody>
+                            <Stack divider={<StackDivider />} spacing="4">
+                                <Center>
+                                    <Heading size="3xl"><JoyIDIcon /></Heading>
+                                </Center>
+                                <Box>
+                                    <HStack>
+                                        <Button onClick={connectJoyID}>CKB: Testnet</Button>
+                                    </HStack>
+                                </Box>
+                            </Stack>
+                        </CardBody>
+                    </Card>
+                </WrapItem> */}
                 <WrapItem>
                     <Card width="260px" height="310px">
                         <CardHeader>
@@ -197,6 +221,7 @@ export const HomeView = () => {
                                 </Center>
                                 <Box>
                                     <HStack>
+                                        <Button onClick={connectJoyID}>JoyID: Testnet</Button>
                                         <Button onClick={connectPW}>PW (Incompatible with CKB)</Button>
                                     </HStack>
                                 </Box>

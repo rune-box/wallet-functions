@@ -18,6 +18,7 @@ import sol from "./sol.svg";
 import trx from "./trx.svg";
 import xtz from "./xtz.svg";
 import masks from "./masks.svg";
+import joyid from "./joyid.svg";
 import unipass from "./unipass.svg";
 import fingerprint from "./fingerprint.svg";
 
@@ -87,6 +88,9 @@ export const MasksIcon = forwardRef<ImageProps, "img">((props: any, ref: any) =>
     return <chakra.img src={masks} ref={ref} width="1em" height="1em" {...props} />
 });
 
+export const JoyIDIcon = forwardRef<ImageProps, "img">((props: any, ref: any) => {
+    return <chakra.img src={joyid} ref={ref} width="1em" height="1em" {...props} />
+});
 export const UnipassIcon = forwardRef<ImageProps, "img">((props: any, ref: any) => {
     return <chakra.img src={unipass} ref={ref} width="1em" height="1em" {...props} />
 });
